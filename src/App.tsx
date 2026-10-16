@@ -15,6 +15,7 @@ export function App() {
         <div hidden={tab !== 'list'}><ListTab /></div>
         <div hidden={tab !== 'rules'}><RulesTab /></div>
       </main>
+      <footer className="py-6 text-center text-xs text-slate-400">Nguyên Kim · Chính Nhân — Tool đặt tên trên website</footer>
     </div>
   );
 }
