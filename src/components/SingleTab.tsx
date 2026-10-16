@@ -30,8 +30,8 @@ function NameCard({ tag, title, value, max, empty }: { tag: string; title: strin
         )}
         {max !== undefined && value && (
           <div className="mt-3 flex items-center gap-3">
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100">
-              <div className={`h-full rounded-full transition-all ${over ? 'bg-red-500' : pct > 90 ? 'bg-amber-500' : 'bg-emerald-500'}`} style={{ width: `${pct}%` }} />
+            <div className="h-1.5 flex-1 overflow-hidden rounded-sm bg-slate-100">
+              <div className={`h-full rounded-sm transition-all ${over ? 'bg-red-500' : pct > 90 ? 'bg-amber-500' : 'bg-emerald-500'}`} style={{ width: `${pct}%` }} />
             </div>
             <span className={`text-xs font-semibold tabular-nums ${over ? 'text-red-600' : 'text-slate-500'}`}>{value.length}/{max} ký tự</span>
           </div>
@@ -90,7 +90,7 @@ export function SingleTab() {
             <p className="mb-2 text-xs font-medium text-slate-500">Thử nhanh với tên mẫu:</p>
             <div className="flex flex-wrap gap-2">
               {SAMPLES.map((s) => (
-                <button key={s} onClick={() => { setInput(s); run(s); }} className="rounded-full bg-brand-soft px-3 py-1 text-left text-xs text-brand transition hover:bg-brand hover:text-white">{s}</button>
+                <button key={s} onClick={() => { setInput(s); run(s); }} className="rounded-sm bg-brand-soft px-3 py-1 text-left text-xs text-brand transition hover:bg-brand hover:text-white">{s}</button>
               ))}
             </div>
           </div>

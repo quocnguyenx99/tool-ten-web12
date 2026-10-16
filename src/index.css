@@ -2,7 +2,14 @@
 
 /* Màu lấy theo logo Nguyên Kim / Chính Nhân: xanh dương + đỏ */
 @theme {
-  --font-sans: "Be Vietnam Pro", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-sans: Arial, "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+  --radius-xs: 1px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 3px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+  --radius-3xl: 6px;
   --color-brand: #1d5fb4;
   --color-brand-dark: #154a8f;
   --color-brand-soft: #eaf1fb;

@@ -117,7 +117,7 @@ export function ListTab() {
           <ol className="mt-4 space-y-3">
             {STEPS.map((s, i) => (
               <li key={i} className="flex gap-3 text-sm text-slate-600">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">{i + 1}</span>
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-brand text-xs font-bold text-white">{i + 1}</span>
                 <span className="pt-0.5">{s}</span>
               </li>
             ))}
@@ -150,7 +150,7 @@ export function ListTab() {
             <div className="flex flex-wrap gap-1.5">
               {FILTERS.map((f) => (
                 <button key={f.id} onClick={() => setFilter(f.id)}
-                  className={`rounded-full px-3 py-1 text-sm transition ${filter === f.id ? 'bg-brand text-white shadow-sm' : 'bg-white text-slate-600 ring-1 ring-slate-300 hover:ring-brand'}`}>
+                  className={`rounded-sm px-3 py-1 text-sm transition ${filter === f.id ? 'bg-brand text-white shadow-sm' : 'bg-white text-slate-600 ring-1 ring-slate-300 hover:ring-brand'}`}>
                   {f.label} <span className="opacity-70">{counts[f.id]}</span>
                 </button>
               ))}

@@ -19,18 +19,28 @@ const EXTRA_EXAMPLES = [
 const CATEGORIES = (categoriesJson as { categories: { id: string; label: string; formula: boolean }[] }).categories;
 
 function Section({ n, title, children, open = false, right }: { n: number; title: string; children: ReactNode; open?: boolean; right?: ReactNode }) {
+  const [isOpen, setOpen] = useState(open);
   return (
-    <details open={open} className="group card overflow-hidden">
-      <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-4 font-semibold text-slate-800 transition hover:bg-slate-50 [&::-webkit-details-marker]:hidden">
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-soft text-sm font-bold text-brand">{n}</span>
+    <section className="card overflow-hidden">
+      <button
+        type="button"
+        aria-expanded={isOpen}
+        onClick={() => setOpen(!isOpen)}
+        className="flex w-full cursor-pointer items-center gap-3 px-5 py-4 text-left font-semibold text-slate-800 transition-colors hover:bg-slate-50"
+      >
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-brand-soft text-sm font-bold text-brand">{n}</span>
         {title}
         <span className="ml-auto flex items-center gap-3">
           {right}
-          <span className="text-slate-400 transition group-open:rotate-180">▾</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`h-4 w-4 text-slate-400 transition-transform duration-300 ease-out ${isOpen ? 'rotate-180' : ''}`}><path d="m6 9 6 6 6-6" /></svg>
         </span>
-      </summary>
-      <div className="space-y-3 border-t border-slate-100 px-5 py-5 text-sm leading-relaxed text-slate-700">{children}</div>
-    </details>
+      </button>
+      <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+        <div className="overflow-hidden">
+          <div className={`space-y-3 border-t border-slate-100 px-5 py-5 text-sm leading-relaxed text-slate-700 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>{children}</div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -160,7 +170,7 @@ export function RulesTab() {
             ['Kiểm tra', 'và gắn cảnh báo nếu thiếu hoặc nghi ngờ.'],
           ].map(([t, d], i) => (
             <li key={t} className="flex gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">{i + 1}</span>
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-brand text-xs font-bold text-white">{i + 1}</span>
               <span className="pt-0.5"><b>{t}</b>: {d}</span>
             </li>
           ))}
@@ -174,7 +184,7 @@ export function RulesTab() {
       <Section n={4} title="Các nhóm hàng tool nhận diện">
         <div className="flex flex-wrap gap-1.5">
           {CATEGORIES.map((c) => (
-            <span key={c.id} className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${c.formula ? 'bg-brand-soft text-brand' : 'bg-amber-50 text-amber-800'}`}>{c.label}</span>
+            <span key={c.id} className={`rounded-sm px-2.5 py-0.5 text-xs font-medium ${c.formula ? 'bg-brand-soft text-brand' : 'bg-amber-50 text-amber-800'}`}>{c.label}</span>
           ))}
         </div>
         <p className="text-slate-500"><span className="rounded bg-brand-soft px-1.5 text-brand">Xanh</span>: đã có công thức đầy đủ. <span className="rounded bg-amber-50 px-1.5 text-amber-800">Vàng</span>: chưa có công thức chi tiết, luôn được đánh dấu "Cần xem lại".</p>

@@ -13,8 +13,8 @@ const DOT: Record<Status, string> = { PASS: 'bg-emerald-500', REVIEW: 'bg-amber-
 
 export function StatusBadge({ status }: { status: Status }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset ${BADGE[status]}`}>
-      <span className={`h-1.5 w-1.5 rounded-full ${DOT[status]}`} />
+    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-sm px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset ${BADGE[status]}`}>
+      <span className={`h-1.5 w-1.5 rounded-sm ${DOT[status]}`} />
       {STATUS_TEXT[status].label}
     </span>
   );
