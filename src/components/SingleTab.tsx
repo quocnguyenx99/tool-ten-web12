@@ -4,12 +4,6 @@ import { STATUS_TEXT } from '../lib/warningText';
 import { SparkIcon } from './icons';
 import { CopyButton, StatusBadge, WarningList } from './ui';
 
-const SAMPLES = [
-  'LAPTOP DELL INSPIRON 15 3520 I5-1235U 8GB 512GB MỚI 100%',
-  'Chuột không dây Logitech M190 đen',
-  'Màn hình Dell P2422H 24 inch FHD IPS',
-];
-
 function NameCard({ tag, title, value, max, empty }: { tag: string; title: string; value: string; max?: number; empty: string }) {
   const over = max !== undefined && value.length > max;
   const pct = max ? Math.min(100, (value.length / max) * 100) : 0;
@@ -73,7 +67,7 @@ export function SingleTab() {
           rows={3}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) run(); }}
+          onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); run(); } }}
           placeholder="Ví dụ: LAPTOP DELL INSPIRON 15 3520 I5-1235U 8GB 512GB MỚI 100%"
           className="w-full resize-y rounded-xl border border-slate-300 bg-slate-50/50 px-3.5 py-3 text-[15px] outline-none transition focus:border-brand focus:bg-white focus:ring-4 focus:ring-brand/10"
         />
@@ -83,18 +77,8 @@ export function SingleTab() {
           {(input || result) && (
             <button onClick={() => { setInput(''); setResult(null); setError(''); }} className="rounded-lg px-3 py-2 text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-800">Xóa</button>
           )}
-          <span className="ml-auto hidden text-xs text-slate-400 sm:inline"><kbd className="rounded border border-slate-300 bg-white px-1.5 font-sans">Ctrl</kbd> + <kbd className="rounded border border-slate-300 bg-white px-1.5 font-sans">Enter</kbd> để tạo nhanh</span>
+          <span className="ml-auto hidden text-xs text-slate-400 sm:inline">Nhấn <kbd className="rounded-sm border border-slate-300 bg-white px-1.5 font-sans">Enter</kbd> để tạo tên</span>
         </div>
-        {!result && (
-          <div className="mt-4 border-t border-slate-100 pt-3">
-            <p className="mb-2 text-xs font-medium text-slate-500">Thử nhanh với tên mẫu:</p>
-            <div className="flex flex-wrap gap-2">
-              {SAMPLES.map((s) => (
-                <button key={s} onClick={() => { setInput(s); run(s); }} className="rounded-sm bg-brand-soft px-3 py-1 text-left text-xs text-brand transition hover:bg-brand hover:text-white">{s}</button>
-              ))}
-            </div>
-          </div>
-        )}
       </section>
 
       {result && (
