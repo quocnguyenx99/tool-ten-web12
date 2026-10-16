@@ -1,0 +1,936 @@
+{
+  "_note": "Router nhóm hàng (bước S5). Engine tìm mọi keyword (regex, so trên tên đã bỏ dấu + IN HOA) và chọn nhóm có keyword xuất hiện SỚM NHẤT trong tên (tên SAP thường mở đầu bằng loại hàng). Bằng vị trí thì keyword dài hơn thắng. promote: nếu nhóm thắng là 'from' và tên có regex 'when' thì đổi sang nhóm 'to'. renderer: công thức WEB 1/WEB 2 trong code (src/engine/render.ts). formula=false: guide chưa có công thức chi tiết -> luôn REVIEW. labelFromName=true: lấy cụm loại hàng tiếng Việt đầu tên làm Product Type.",
+  "categories": [
+    {
+      "id": "software",
+      "label": "Phần mềm",
+      "renderer": "software",
+      "formula": true,
+      "kw": [
+        "PHAN MEM",
+        "BAN QUYEN",
+        "DICH VU TRUC TUYEN",
+        "SUBSCRIPTION",
+        "LICENSE PACK"
+      ],
+      "mhh": [
+        "SW"
+      ],
+      "column": [
+        "Phần mềm"
+      ]
+    },
+    {
+      "id": "service",
+      "label": "Dịch vụ",
+      "renderer": "generic",
+      "formula": false,
+      "labelFromName": true,
+      "kw": [
+        "^DICH VU",
+        "^SUA ",
+        "DICH VU BAO HANH",
+        "SERVICE TAG",
+        "PREMIER SUPPORT PLUS",
+        "\\bSUPPORT$",
+        "FOUNDATION CARE",
+        "PROACTIVE CARE",
+        "CARE PACK"
+      ],
+      "mhh": [
+        "EP"
+      ],
+      "column": [
+        "Dịch vụ bảo hành mở rộng"
+      ]
+    },
+    {
+      "id": "solar",
+      "label": "Tấm pin năng lượng mặt trời",
+      "renderer": "generic",
+      "formula": false,
+      "kw": [
+        "TAM PIN NANG LUONG",
+        "SOLAR PANEL"
+      ],
+      "mhh": [],
+      "column": []
+    },
+    {
+      "id": "power_station",
+      "label": "Nguồn điện di động",
+      "renderer": "power_station",
+      "formula": true,
+      "kw": [
+        "POWER STATION",
+        "BO CUNG CAP NGUON LIEN TUC",
+        "NGUON DIEN DI DONG",
+        "TRAM SAC DU PHONG"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "powerbank",
+      "label": "Pin sạc dự phòng",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "PIN SAC DU PHONG",
+        "POWER BANK",
+        "POWERBANK"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "ups_battery",
+      "label": "Ắc quy UPS",
+      "renderer": "generic",
+      "formula": false,
+      "kw": [
+        "AC QUY",
+        "BINH AC QUY"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "ups",
+      "label": "Bộ lưu điện UPS",
+      "renderer": "ups",
+      "formula": true,
+      "kw": [
+        "BO LUU DIEN",
+        "\\bUPS\\b",
+        "ON AP"
+      ],
+      "mhh": [
+        "LD"
+      ]
+    },
+    {
+      "id": "battery",
+      "label": "Pin",
+      "renderer": "generic",
+      "formula": false,
+      "kw": [
+        "^PIN\\b",
+        "\\bPIN (LITHIUM|LIFEPO4|DUNG CHO|MAY CHU|LAPTOP|HP|DELL)",
+        "\\bBATTERY\\b"
+      ],
+      "mhh": [
+        "AP"
+      ]
+    },
+    {
+      "id": "laptop_part",
+      "label": "Linh kiện laptop",
+      "renderer": "generic",
+      "formula": false,
+      "labelFromName": true,
+      "kw": [
+        "^VO MAT [A-D]\\b",
+        "^VO LAPTOP",
+        "^BAN LE LAPTOP",
+        "^LINH KIEN LAPTOP"
+      ],
+      "mhh": [],
+      "column": []
+    },
+    {
+      "id": "laptop",
+      "label": "Laptop",
+      "renderer": "laptop",
+      "formula": true,
+      "kw": [
+        "MAY TINH XACH TAY",
+        "^NB\\b",
+        "\\bLAPTOP\\b",
+        "\\bNOTEBOOK\\b"
+      ],
+      "mhh": [
+        "NB"
+      ],
+      "column": [
+        "Laptop"
+      ]
+    },
+    {
+      "id": "workstation",
+      "label": "Workstation",
+      "renderer": "workstation",
+      "formula": true,
+      "kw": [
+        "MAY TINH TRAM",
+        "MAY TRAM",
+        "WORKSTATION",
+        "THINKSTATION",
+        "PRECISION \\d{4}",
+        "PRO MAX TOWER"
+      ],
+      "mhh": [
+        "WK"
+      ],
+      "column": [
+        "Workstation"
+      ]
+    },
+    {
+      "id": "server",
+      "label": "Server",
+      "renderer": "server",
+      "formula": true,
+      "kw": [
+        "^MAY CHU\\b",
+        "^MAY TINH CHU\\b",
+        "POWEREDGE [RT]\\d{3}",
+        "PROLIANT (DL|ML)\\d{2,3}"
+      ],
+      "mhh": [
+        "SV"
+      ],
+      "column": [
+        "Server"
+      ]
+    },
+    {
+      "id": "pc",
+      "label": "PC",
+      "renderer": "pc",
+      "formula": true,
+      "kw": [
+        "MAY TINH DE BAN",
+        "MAY TINH BAN\\b",
+        "MAY TINH CA NHAN",
+        "MAY VI TINH",
+        "MAY TINH NGUYEN BO",
+        "MAY BO\\b",
+        "^PC\\b",
+        "\\(PC\\)",
+        "BO PC\\b"
+      ],
+      "mhh": [
+        "MB"
+      ],
+      "column": [
+        "Máy tính để bàn"
+      ],
+      "promote": [
+        {
+          "to": "nuc",
+          "when": "\\bNUC\\b|MINI PC|MINI CUBI"
+        },
+        {
+          "to": "aio",
+          "when": "\\bAIO\\b|ALL IN ONE"
+        },
+        {
+          "to": "workstation",
+          "when": "WORKSTATION|THINKSTATION|MAY TRAM"
+        }
+      ]
+    },
+    {
+      "id": "aio",
+      "label": "PC AIO",
+      "renderer": "aio",
+      "formula": true,
+      "kw": [
+        "\\bAIO\\b",
+        "ALL IN ONE"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "nuc",
+      "label": "Mini PC",
+      "renderer": "nuc",
+      "formula": true,
+      "kw": [
+        "MINI PC",
+        "BAREBONE",
+        "\\bNUC\\d*\\b"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "tv",
+      "label": "Tivi",
+      "renderer": "monitor",
+      "formula": false,
+      "kw": [
+        "^TI ?VI\\b",
+        "SMART TV"
+      ],
+      "mhh": [
+        "TV"
+      ]
+    },
+    {
+      "id": "monitor",
+      "label": "Màn hình",
+      "renderer": "monitor",
+      "formula": true,
+      "kw": [
+        "MAN HINH",
+        "^LCD\\b",
+        "\\bMONITOR\\b"
+      ],
+      "mhh": [
+        "MH",
+        "MT"
+      ],
+      "column": [
+        "Màn hình máy tính"
+      ]
+    },
+    {
+      "id": "tablet",
+      "label": "Máy tính bảng",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "MAY TINH BANG",
+        "\\bIPAD\\b",
+        "GALAXY TAB"
+      ],
+      "mhh": [
+        "TL"
+      ]
+    },
+    {
+      "id": "phone",
+      "label": "Điện thoại",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "DIEN THOAI DI DONG",
+        "\\bIPHONE\\b"
+      ],
+      "mhh": [
+        "EN"
+      ]
+    },
+    {
+      "id": "barcode",
+      "label": "Máy quét mã vạch",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "MAY QUET MA VACH",
+        "MAY DOC MA VACH"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "scanner",
+      "label": "Máy scan",
+      "renderer": "scanner",
+      "formula": true,
+      "kw": [
+        "MAY QUET",
+        "MAY SCAN",
+        "SCANJET",
+        "\\bSCANNER\\b"
+      ],
+      "mhh": [
+        "MQ",
+        "MS"
+      ]
+    },
+    {
+      "id": "printer",
+      "label": "Máy in",
+      "renderer": "printer",
+      "formula": true,
+      "kw": [
+        "^MAY IN\\b",
+        "\\bMAY IN (LASER|PHUN|BILL|DA|MA VACH|TEM|NHIET)",
+        "MAY PHOTOCOPY",
+        "\\bPRINTER\\b"
+      ],
+      "mhh": [
+        "MI"
+      ],
+      "column": [
+        "Máy in/ Máy Scan"
+      ]
+    },
+    {
+      "id": "ink",
+      "label": "Mực in",
+      "renderer": "ink",
+      "formula": true,
+      "kw": [
+        "HOP MUC",
+        "LO MUC",
+        "^MUC\\b",
+        "MUC IN",
+        "TONER",
+        "INK CART",
+        "RUY BANG"
+      ],
+      "mhh": [
+        "IK",
+        "IC",
+        "IP",
+        "CL"
+      ],
+      "column": [
+        "Mực in chính hãng"
+      ]
+    },
+    {
+      "id": "drum",
+      "label": "Drum",
+      "renderer": "ink",
+      "formula": true,
+      "kw": [
+        "TRONG MAY IN",
+        "TRONG TU",
+        "CUM TRONG",
+        "\\bDRUM\\b"
+      ],
+      "mhh": [
+        "IR"
+      ]
+    },
+    {
+      "id": "printer_part",
+      "label": "Linh kiện máy in",
+      "renderer": "generic",
+      "formula": false,
+      "labelFromName": true,
+      "kw": [
+        "CUM SAY",
+        "FUSER",
+        "IMAGE TRANSFER",
+        "KHAY NAP GIAY",
+        "DAU IN",
+        "BO GAT MUC",
+        "MUC THAI"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "label",
+      "label": "Nhãn in",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "NHAN IN",
+        "NHAN GIAY"
+      ],
+      "mhh": [
+        "EG"
+      ]
+    },
+    {
+      "id": "ssd",
+      "label": "SSD",
+      "renderer": "storage",
+      "formula": true,
+      "kw": [
+        "\\bO CUNG (MAY TINH |GAN TRONG |GAN NGOAI |DUNG CHO MAY CHU |MAY CHU )?SSD",
+        "^SSD\\b",
+        "\\bO CUNG SSD"
+      ],
+      "mhh": [
+        "AS"
+      ]
+    },
+    {
+      "id": "hdd",
+      "label": "HDD",
+      "renderer": "storage",
+      "formula": true,
+      "kw": [
+        "\\bO CUNG\\b",
+        "\\bO DIA CUNG\\b",
+        "^HDD\\b",
+        "HARD DRIVE",
+        "^SEAGATE\\b"
+      ],
+      "mhh": [
+        "AD"
+      ]
+    },
+    {
+      "id": "ram",
+      "label": "RAM",
+      "renderer": "ram",
+      "formula": true,
+      "kw": [
+        "BO NHO",
+        "^RAM\\b",
+        "THANH RAM",
+        "\\bRAM (DELL|HP|HPE|SAMSUNG|KINGSTON|MAY CHU)",
+        "^(KINGSTON|SAMSUNG|MICRON) \\d+GB"
+      ],
+      "mhh": [
+        "AR"
+      ]
+    },
+    {
+      "id": "cpu",
+      "label": "CPU",
+      "renderer": "cpu",
+      "formula": true,
+      "kw": [
+        "VI XU LY",
+        "^CHIP\\b",
+        "^CPU\\b"
+      ],
+      "mhh": [
+        "AC"
+      ]
+    },
+    {
+      "id": "vga",
+      "label": "VGA",
+      "renderer": "vga",
+      "formula": true,
+      "kw": [
+        "CAC MAN HINH",
+        "CARD MAN HINH",
+        "CAC DO HOA",
+        "CARD DO HOA",
+        "CARD VGA",
+        "^VGA\\b"
+      ],
+      "mhh": [
+        "AV"
+      ]
+    },
+    {
+      "id": "mainboard",
+      "label": "Mainboard",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "MACH CHINH",
+        "BO MACH CHU",
+        "BANG MACH CHINH",
+        "MAINBOARD"
+      ],
+      "mhh": [
+        "AB"
+      ]
+    },
+    {
+      "id": "psu",
+      "label": "Nguồn máy tính",
+      "renderer": "psu",
+      "formula": true,
+      "kw": [
+        "^NGUON\\b",
+        "^BO NGUON\\b",
+        "POWER SUPPLY",
+        "^POWER \\d+W"
+      ],
+      "mhh": [
+        "AN"
+      ]
+    },
+    {
+      "id": "case",
+      "label": "Vỏ máy tính",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "VO MAY",
+        "^CASE MAY TINH"
+      ],
+      "mhh": [
+        "AA"
+      ]
+    },
+    {
+      "id": "cooler",
+      "label": "Tản nhiệt",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "TAN NHIET",
+        "QUAT GIAI NHIET",
+        "BO LAM MAT",
+        "HEATSINK"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "raid",
+      "label": "Card RAID",
+      "renderer": "generic",
+      "formula": false,
+      "labelFromName": true,
+      "kw": [
+        "CAC DIEU KHIEN",
+        "BO DIEU KHIEN HPE",
+        "SMART ARRAY",
+        "\\bHBA\\b"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "nic",
+      "label": "Card mạng",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "CAC MANG",
+        "CARD MANG",
+        "CAC MAY CHU",
+        "NETWORK ADAPTER"
+      ],
+      "mhh": [
+        "AI"
+      ]
+    },
+    {
+      "id": "transceiver",
+      "label": "Module quang",
+      "renderer": "generic",
+      "formula": false,
+      "kw": [
+        "MO DUN QUANG",
+        "SFP\\+? .*XCVR",
+        "CHUYEN DOI TIN HIEU \\("
+      ],
+      "mhh": []
+    },
+    {
+      "id": "switch",
+      "label": "Switch",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "CHUYEN MACH",
+        "^SWITCH\\b"
+      ],
+      "mhh": [
+        "CS"
+      ]
+    },
+    {
+      "id": "router",
+      "label": "Router",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "DINH TUYEN",
+        "\\bROUTER\\b"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "wifi",
+      "label": "Thiết bị phát Wi-Fi",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "THU PHAT",
+        "ACCESS POINT",
+        "TRUYEN DU LIEU BANG RONG"
+      ],
+      "mhh": [
+        "CR"
+      ]
+    },
+    {
+      "id": "nas",
+      "label": "Thiết bị lưu trữ mạng NAS",
+      "renderer": "generic",
+      "formula": false,
+      "kw": [
+        "LUU TRU MANG",
+        "\\bNAS\\b"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "nvr",
+      "label": "Đầu ghi hình",
+      "renderer": "generic",
+      "formula": false,
+      "kw": [
+        "DAU GHI HINH"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "camera",
+      "label": "Camera",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "^CAMERA\\b",
+        "CAMERA (GIAM SAT|QUAN SAT|KY THUAT SO|IP|USB)"
+      ],
+      "mhh": [
+        "FE"
+      ]
+    },
+    {
+      "id": "webcam",
+      "label": "Webcam",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "THIET BI GHI HINH",
+        "\\bWEBCAM\\b"
+      ],
+      "mhh": [
+        "CW"
+      ]
+    },
+    {
+      "id": "conference",
+      "label": "Thiết bị hội nghị",
+      "renderer": "generic",
+      "formula": false,
+      "labelFromName": true,
+      "kw": [
+        "HOI NGHI",
+        "HOP TRUC TUYEN",
+        "SPEAKERPHONE",
+        "MICRO/LOA"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "projector_acc",
+      "label": "Phụ kiện máy chiếu",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "(CHAN DE|GIA TREO|KHAY|BONG DEN) MAY CHIEU"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "projector",
+      "label": "Máy chiếu",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "MAY CHIEU"
+      ],
+      "mhh": [
+        "MC"
+      ]
+    },
+    {
+      "id": "mouse",
+      "label": "Chuột",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "^CHUOT\\b",
+        "\\(MOUSE\\)"
+      ],
+      "mhh": [
+        "CM"
+      ]
+    },
+    {
+      "id": "kbm",
+      "label": "Combo phím chuột",
+      "renderer": "generic",
+      "formula": false,
+      "kw": [
+        "BAN PHIM \\+ CHUOT",
+        "BO BAN PHIM CHUOT",
+        "BAN PHIM CHUOT"
+      ],
+      "mhh": [
+        "CE"
+      ]
+    },
+    {
+      "id": "keyboard",
+      "label": "Bàn phím",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "BAN PHIM",
+        "\\(KEYBOARD\\)"
+      ],
+      "mhh": [
+        "CK"
+      ]
+    },
+    {
+      "id": "headset",
+      "label": "Tai nghe",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "TAI NGHE",
+        "HEADSET",
+        "EARPODS"
+      ],
+      "mhh": [
+        "CF"
+      ]
+    },
+    {
+      "id": "speaker",
+      "label": "Loa",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "^LOA\\b"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "presenter",
+      "label": "Bút trình chiếu",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "BUT TRINH CHIEU",
+        "THIET BI TRINH CHIEU"
+      ],
+      "mhh": [
+        "EB"
+      ]
+    },
+    {
+      "id": "charger",
+      "label": "Củ sạc",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "CU SAC",
+        "^SAC\\b",
+        "BO SAC",
+        "POWER ADAPTER",
+        "AC ADAPTER"
+      ],
+      "mhh": [
+        "CA"
+      ]
+    },
+    {
+      "id": "cable",
+      "label": "Cáp",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "^CAP\\b",
+        "^DAY (HDMI|CAP|USB|NGUON|MANG)",
+        "CAP DU LIEU",
+        "DAY HDMI"
+      ],
+      "mhh": [
+        "EC"
+      ]
+    },
+    {
+      "id": "adapter",
+      "label": "Bộ chuyển đổi",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "BO CHUYEN DOI",
+        "DAU NOI",
+        "DAU CHUYEN",
+        "BO KET NOI",
+        "BO NOI DAI",
+        "HOP O CUNG"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "smartwatch",
+      "label": "Đồng hồ thông minh",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "DONG HO THONG MINH"
+      ],
+      "mhh": [
+        "DH"
+      ]
+    },
+    {
+      "id": "scooter",
+      "label": "Xe trượt điện",
+      "renderer": "generic",
+      "formula": true,
+      "kw": [
+        "XE TRUOT DIEN"
+      ],
+      "mhh": []
+    },
+    {
+      "id": "office",
+      "label": "Thiết bị văn phòng",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "MAY HUY TAI LIEU",
+        "MAY DEM TIEN",
+        "TU CHONG AM",
+        "MAY HUT AM",
+        "MAY LOC KHONG KHI",
+        "MAY HUT BUI"
+      ],
+      "mhh": [
+        "MG"
+      ]
+    },
+    {
+      "id": "smarthome",
+      "label": "Thiết bị nhà thông minh",
+      "renderer": "generic",
+      "formula": true,
+      "labelFromName": true,
+      "kw": [
+        "CAM BIEN",
+        "CONG TAC",
+        "BONG DEN",
+        "^DEN\\b",
+        "CHUONG CUA",
+        "\\bREM\\b",
+        "KHOA CUA",
+        "O CAM",
+        "BO NAP THUC AN",
+        "GIA DO",
+        "BO DIEU KHIEN",
+        "HOP DUNG DONG CO",
+        "THIET BI DIEU KHIEN"
+      ],
+      "mhh": [
+        "HG"
+      ]
+    },
+    {
+      "id": "server_part",
+      "label": "Phụ kiện máy chủ",
+      "renderer": "generic",
+      "formula": false,
+      "labelFromName": true,
+      "kw": [
+        "NAP DAY",
+        "KHAY GAN O CUNG",
+        "KHE CAM O CUNG",
+        "RAIL KIT",
+        "BEZEL"
+      ],
+      "mhh": [
+        "KR"
+      ],
+      "column": [
+        "Linh Kiện Server"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,795 @@
+{
+ "_note": "Danh sách thương hiệu chuẩn. name = cách viết chuẩn trên web; aliases = các cách viết gặp trong tên SAP (so khớp không dấu, không phân biệt hoa thường); mhh = mã hãng ở ký tự 3-4 của MHH (chỉ dùng khi tên không có hãng, và luôn đánh REVIEW). implied = tên dòng sản phẩm ngầm chỉ hãng (giữ nguyên trong Model, ví dụ AutoCAD -> hãng Autodesk).",
+ "brands": [
+  {
+   "name": "HPE",
+   "aliases": [
+    "HPE",
+    "HEWLETT PACKARD ENTERPRISE"
+   ]
+  },
+  {
+   "name": "HP",
+   "aliases": [
+    "HP"
+   ]
+  },
+  {
+   "name": "Dell",
+   "aliases": [
+    "DELL"
+   ],
+   "mhh": [
+    "DE"
+   ]
+  },
+  {
+   "name": "Lenovo",
+   "aliases": [
+    "LENOVO",
+    "LENOVOTHINKCENTRE"
+   ],
+   "mhh": [
+    "LE"
+   ]
+  },
+  {
+   "name": "IBM",
+   "aliases": [
+    "IBM"
+   ],
+   "mhh": [
+    "IB"
+   ]
+  },
+  {
+   "name": "Asus",
+   "aliases": [
+    "ASUS"
+   ],
+   "mhh": [
+    "AS"
+   ]
+  },
+  {
+   "name": "Acer",
+   "aliases": [
+    "ACER"
+   ]
+  },
+  {
+   "name": "MSI",
+   "aliases": [
+    "MSI"
+   ],
+   "mhh": [
+    "SI"
+   ]
+  },
+  {
+   "name": "Apple",
+   "aliases": [
+    "APPLE"
+   ],
+   "mhh": [
+    "AL"
+   ],
+   "implied": [
+    "IPHONE",
+    "IPAD",
+    "MACBOOK",
+    "EARPODS",
+    "AIRPODS"
+   ]
+  },
+  {
+   "name": "Samsung",
+   "aliases": [
+    "SAMSUNG"
+   ],
+   "mhh": [
+    "SS"
+   ]
+  },
+  {
+   "name": "LG",
+   "aliases": [
+    "LG"
+   ]
+  },
+  {
+   "name": "Fujitsu",
+   "aliases": [
+    "FUJITSU"
+   ],
+   "mhh": [
+    "FJ"
+   ]
+  },
+  {
+   "name": "Intel",
+   "aliases": [
+    "INTEL"
+   ]
+  },
+  {
+   "name": "AMD",
+   "aliases": [
+    "AMD"
+   ],
+   "mhh": [
+    "AM"
+   ]
+  },
+  {
+   "name": "NVIDIA",
+   "aliases": [
+    "NVIDIA"
+   ]
+  },
+  {
+   "name": "Gigabyte",
+   "aliases": [
+    "GIGABYTE"
+   ],
+   "mhh": [
+    "GI"
+   ]
+  },
+  {
+   "name": "Aorus",
+   "aliases": [
+    "AORUS"
+   ]
+  },
+  {
+   "name": "Asrock",
+   "aliases": [
+    "ASROCK"
+   ]
+  },
+  {
+   "name": "Corsair",
+   "aliases": [
+    "CORSAIR"
+   ],
+   "mhh": [
+    "CO"
+   ]
+  },
+  {
+   "name": "Cooler Master",
+   "aliases": [
+    "COOLER MASTER",
+    "COOLERMASTER"
+   ]
+  },
+  {
+   "name": "Deepcool",
+   "aliases": [
+    "DEEPCOOL"
+   ]
+  },
+  {
+   "name": "Xigmatek",
+   "aliases": [
+    "XIGMATEK"
+   ]
+  },
+  {
+   "name": "SAMA",
+   "aliases": [
+    "SAMA"
+   ]
+  },
+  {
+   "name": "ID-Cooling",
+   "aliases": [
+    "ID-COOLING",
+    "IDCOOLING"
+   ]
+  },
+  {
+   "name": "Kingston",
+   "aliases": [
+    "KINGSTON"
+   ],
+   "mhh": [
+    "KT"
+   ]
+  },
+  {
+   "name": "Kingmax",
+   "aliases": [
+    "KINGMAX"
+   ],
+   "mhh": [
+    "KM"
+   ]
+  },
+  {
+   "name": "G.Skill",
+   "aliases": [
+    "G.SKILL",
+    "G-SKILL",
+    "GSKILL"
+   ],
+   "mhh": [
+    "GS"
+   ]
+  },
+  {
+   "name": "TeamGroup",
+   "aliases": [
+    "TEAMGROUP",
+    "TEAM GROUP"
+   ]
+  },
+  {
+   "name": "Micron",
+   "aliases": [
+    "MICRON"
+   ]
+  },
+  {
+   "name": "Seagate",
+   "aliases": [
+    "SEAGATE"
+   ],
+   "mhh": [
+    "SE"
+   ]
+  },
+  {
+   "name": "WD",
+   "aliases": [
+    "WESTERN DIGITAL",
+    "WD"
+   ],
+   "mhh": [
+    "WD"
+   ]
+  },
+  {
+   "name": "Toshiba",
+   "aliases": [
+    "TOSHIBA"
+   ],
+   "mhh": [
+    "TO"
+   ]
+  },
+  {
+   "name": "Lexar",
+   "aliases": [
+    "LEXAR"
+   ],
+   "mhh": [
+    "LR"
+   ]
+  },
+  {
+   "name": "Transcend",
+   "aliases": [
+    "TRANSCEND"
+   ]
+  },
+  {
+   "name": "SanDisk",
+   "aliases": [
+    "SANDISK"
+   ]
+  },
+  {
+   "name": "Silicon Power",
+   "aliases": [
+    "SILICON POWER"
+   ]
+  },
+  {
+   "name": "Silicon",
+   "aliases": [
+    "SILICON"
+   ]
+  },
+  {
+   "name": "Orico",
+   "aliases": [
+    "ORICO"
+   ]
+  },
+  {
+   "name": "Canon",
+   "aliases": [
+    "CANON"
+   ],
+   "mhh": [
+    "CN"
+   ]
+  },
+  {
+   "name": "Epson",
+   "aliases": [
+    "EPSON"
+   ],
+   "mhh": [
+    "EP"
+   ]
+  },
+  {
+   "name": "Brother",
+   "aliases": [
+    "BROTHER"
+   ]
+  },
+  {
+   "name": "Oki",
+   "aliases": [
+    "OKI"
+   ],
+   "mhh": [
+    "OK"
+   ]
+  },
+  {
+   "name": "Ricoh",
+   "aliases": [
+    "RICOH"
+   ],
+   "mhh": [
+    "RI"
+   ]
+  },
+  {
+   "name": "Fuji Xerox",
+   "aliases": [
+    "FUJI XEROX",
+    "FUJIFILM"
+   ]
+  },
+  {
+   "name": "Xerox",
+   "aliases": [
+    "XEROX"
+   ]
+  },
+  {
+   "name": "Sharp",
+   "aliases": [
+    "SHARP"
+   ]
+  },
+  {
+   "name": "Zebra",
+   "aliases": [
+    "ZEBRA"
+   ]
+  },
+  {
+   "name": "Kodak",
+   "aliases": [
+    "KODAK"
+   ],
+   "mhh": [
+    "KK"
+   ]
+  },
+  {
+   "name": "Plustek",
+   "aliases": [
+    "PLUSTEK"
+   ],
+   "mhh": [
+    "PU"
+   ]
+  },
+  {
+   "name": "Honeywell",
+   "aliases": [
+    "HONEYWELL"
+   ]
+  },
+  {
+   "name": "Olivetti",
+   "aliases": [
+    "OLIVETTI"
+   ]
+  },
+  {
+   "name": "Panasonic",
+   "aliases": [
+    "PANASONIC"
+   ]
+  },
+  {
+   "name": "Philips",
+   "aliases": [
+    "PHILIPS",
+    "PHILLIPS"
+   ]
+  },
+  {
+   "name": "ViewSonic",
+   "aliases": [
+    "VIEWSONIC"
+   ],
+   "mhh": [
+    "VS"
+   ]
+  },
+  {
+   "name": "AOC",
+   "aliases": [
+    "AOC"
+   ],
+   "mhh": [
+    "AO"
+   ]
+  },
+  {
+   "name": "VSP",
+   "aliases": [
+    "VSP"
+   ],
+   "mhh": [
+    "VP"
+   ]
+  },
+  {
+   "name": "FPT Elead",
+   "aliases": [
+    "FPT ELEAD",
+    "ELEAD"
+   ]
+  },
+  {
+   "name": "TCL",
+   "aliases": [
+    "TCL"
+   ]
+  },
+  {
+   "name": "Cisco",
+   "aliases": [
+    "CISCO"
+   ],
+   "mhh": [
+    "CI"
+   ]
+  },
+  {
+   "name": "TP-Link",
+   "aliases": [
+    "TP-LINK",
+    "TPLINK",
+    "TP LINK"
+   ],
+   "mhh": [
+    "TP"
+   ]
+  },
+  {
+   "name": "Ubiquiti",
+   "aliases": [
+    "UBIQUITI"
+   ],
+   "mhh": [
+    "UQ"
+   ],
+   "implied": [
+    "UNIFI"
+   ]
+  },
+  {
+   "name": "Aruba",
+   "aliases": [
+    "ARUBA"
+   ]
+  },
+  {
+   "name": "Ruijie",
+   "aliases": [
+    "RUIJIE"
+   ]
+  },
+  {
+   "name": "H3C",
+   "aliases": [
+    "H3C"
+   ]
+  },
+  {
+   "name": "DrayTek",
+   "aliases": [
+    "DRAYTEK"
+   ],
+   "mhh": [
+    "DR"
+   ]
+  },
+  {
+   "name": "Linksys",
+   "aliases": [
+    "LINKSYS"
+   ]
+  },
+  {
+   "name": "Synology",
+   "aliases": [
+    "SYNOLOGY"
+   ],
+   "mhh": [
+    "SL"
+   ]
+  },
+  {
+   "name": "Hikvision",
+   "aliases": [
+    "HIKVISION"
+   ]
+  },
+  {
+   "name": "Dahua",
+   "aliases": [
+    "DAHUA"
+   ],
+   "mhh": [
+    "DH"
+   ]
+  },
+  {
+   "name": "Blurams",
+   "aliases": [
+    "BLURAMS"
+   ]
+  },
+  {
+   "name": "APC",
+   "aliases": [
+    "APC"
+   ],
+   "mhh": [
+    "AP"
+   ]
+  },
+  {
+   "name": "Santak",
+   "aliases": [
+    "SANTAK"
+   ],
+   "mhh": [
+    "SA"
+   ]
+  },
+  {
+   "name": "Legrand",
+   "aliases": [
+    "LEGRAND"
+   ]
+  },
+  {
+   "name": "EcoFlow",
+   "aliases": [
+    "ECOFLOW"
+   ],
+   "mhh": [
+    "EF"
+   ]
+  },
+  {
+   "name": "Aqara",
+   "aliases": [
+    "AQARA"
+   ]
+  },
+  {
+   "name": "Mibro",
+   "aliases": [
+    "MIBRO"
+   ],
+   "mhh": [
+    "MR"
+   ]
+  },
+  {
+   "name": "Ninebot",
+   "aliases": [
+    "NINEBOT",
+    "SEGWAY"
+   ],
+   "mhh": [
+    "NT"
+   ]
+  },
+  {
+   "name": "Roborock",
+   "aliases": [
+    "ROBOROCK"
+   ],
+   "mhh": [
+    "RR"
+   ]
+  },
+  {
+   "name": "Wanbo",
+   "aliases": [
+    "WANBO"
+   ],
+   "mhh": [
+    "WB"
+   ]
+  },
+  {
+   "name": "Vimgo",
+   "aliases": [
+    "VIMGO"
+   ]
+  },
+  {
+   "name": "Logitech",
+   "aliases": [
+    "LOGITECH"
+   ],
+   "mhh": [
+    "LO"
+   ]
+  },
+  {
+   "name": "Jabra",
+   "aliases": [
+    "JABRA"
+   ]
+  },
+  {
+   "name": "Poly",
+   "aliases": [
+    "POLY"
+   ]
+  },
+  {
+   "name": "Newmen",
+   "aliases": [
+    "NEWMEN"
+   ],
+   "mhh": [
+    "NE"
+   ]
+  },
+  {
+   "name": "Dareu",
+   "aliases": [
+    "DAREU"
+   ]
+  },
+  {
+   "name": "Keychron",
+   "aliases": [
+    "KEYCHRON"
+   ]
+  },
+  {
+   "name": "E-Dra",
+   "aliases": [
+    "E-DRA",
+    "EDRA"
+   ]
+  },
+  {
+   "name": "Ugreen",
+   "aliases": [
+    "UGREEN"
+   ],
+   "mhh": [
+    "UG"
+   ]
+  },
+  {
+   "name": "Unitek",
+   "aliases": [
+    "UNITEK"
+   ],
+   "mhh": [
+    "UT"
+   ]
+  },
+  {
+   "name": "Tesla",
+   "aliases": [
+    "TESLA"
+   ],
+   "mhh": [
+    "TA"
+   ]
+  },
+  {
+   "name": "Holatravel",
+   "aliases": [
+    "HOLATRAVEL"
+   ]
+  },
+  {
+   "name": "Microsoft",
+   "aliases": [
+    "MICROSOFT"
+   ],
+   "mhh": [
+    "MS"
+   ]
+  },
+  {
+   "name": "Autodesk",
+   "aliases": [
+    "AUTODESK"
+   ],
+   "implied": [
+    "AUTOCAD",
+    "3DS MAX",
+    "REVIT"
+   ]
+  },
+  {
+   "name": "Adobe",
+   "aliases": [
+    "ADOBE"
+   ],
+   "mhh": [
+    "DA"
+   ],
+   "implied": [
+    "PHOTOSHOP",
+    "ILLUSTRATOR",
+    "INDESIGN",
+    "CREATIVE CLOUD",
+    "ACROBAT"
+   ]
+  },
+  {
+   "name": "Kaspersky",
+   "aliases": [
+    "KASPERSKY"
+   ],
+   "mhh": [
+    "KA"
+   ]
+  },
+  {
+   "name": "Veeam",
+   "aliases": [
+    "VEEAM"
+   ]
+  },
+  {
+   "name": "Figma",
+   "aliases": [
+    "FIGMA"
+   ]
+  },
+  {
+   "name": "Rosa",
+   "aliases": [
+    "ROSA"
+   ],
+   "mhh": [
+    "RS"
+   ]
+  },
+  {
+   "name": "Nikatei",
+   "aliases": [
+    "NIKATEI"
+   ]
+  },
+  {
+   "name": "Daikin",
+   "aliases": [
+    "DAIKIN"
+   ]
+  },
+  {
+   "name": "Vision",
+   "aliases": [
+    "VISION"
+   ]
+  }
+ ]
+}
